@@ -1,0 +1,175 @@
+body {
+    background-image: url('flower bg.png');
+    background-color: #fce4ec; /* Fallback color */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Georgia', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+    z-index: 10; /* Keeps the card on top */
+    margin: 20px;
+    max-width: 500px;
+}
+
+/* Carousel Styles */
+.carousel-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px auto;
+}
+
+.carousel-slide {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #ff80ab;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+.dots-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #f8bbd0;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dot.active {
+    background-color: #c2185b;
+}
+
+h1 {
+    color: #c2185b;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.message {
+    color: #555;
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.flowers, .floating-us-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.flower {
+    position: absolute;
+    background-image: url('flower.png');
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    animation: fall 10s linear infinite;
+    z-index: 5;
+}
+
+/* --- NEW: Styles for the special floating picture --- */
+.floating-pic {
+    position: absolute;
+    width: 120px; /* Size of the floating pic */
+    height: 120px;
+    border-radius: 90%; /* Makes it circular */
+    border: 4px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 15px rgba(255, 128, 171, 0.5);
+    object-fit: cover;
+    z-index: 1; /* Behind the card, in front of the BG */
+    animation: floatAndFade 15s ease-in-out infinite;
+}
+
+/* --- NEW: Animation for the floating picture --- */
+@keyframes floatAndFade {
+    0% {
+        transform: translateY(110vh) translateX(0) scale(0.8) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20vh) translateX(10vw) scale(1.1) rotate(15deg);
+        opacity: 0;
+    }
+}
+
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .card { padding: 20px; }
+    h1 { font-size: 2em; }
+    .carousel-container, .carousel-slide img { width: 150px; height: 150px; }
+    .message { font-size: 1em; }
+    /* Make floating pic smaller on mobile */
+    .floating-pic { width: 80px; height: 80px; }
+}
